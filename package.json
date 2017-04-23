@@ -1,0 +1,49 @@
+{
+  "name": "watertables",
+  "version": "1.0.0",
+  "description": "Arduino measurements hooked up to mongodb and d3",
+  "main": "index.js",
+  "scripts": {
+    "css": "node_modules/.bin/minify --output public/stylesheets/styles.css source/stylesheets/styles.css",
+    "js": "node_modules/.bin/browserify source/bootstrap/client.js -t [ babelify --presets [ latest babili ] ] --ignore-missing > public/scripts/main.min.js",
+    "js-size": "node_modules/.bin/browserify source/bootstrap/client.js -t [ babelify --presets [ latest ] ] --ignore-missing --list | xargs ls -la --sort=size",
+    "serve": "NODE_ENV=development node_modules/.bin/nodemon --harmony source/bootstrap/webserver.js",
+    "watch": "npm-watch"
+  },
+  "author": "Roy Niels",
+  "license": "ISC",
+  "watch": {
+    "js": {
+      "patterns": [
+        "source/*"
+      ],
+      "extensions": "js"
+    },
+    "css": {
+      "patterns": [
+        "source/stylesheets"
+      ],
+      "extensions": "css"
+    }
+  },
+  "devDependencies": {
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-babili": "0.0.12",
+    "babel-preset-latest": "^6.22.0",
+    "babelify": "^7.3.0",
+    "browserify": "^14.0.0",
+    "minifier": "^0.8.1",
+    "npm-watch": "^0.1.8"
+  },
+  "dependencies": {
+    "body": "^5.1.0",
+    "date-fns": "^1.28.3",
+    "lr-client-renderer": "^1.0.0",
+    "lr-main": "^1.0.0",
+    "lr-server-renderer": "^1.0.0",
+    "lr-server-router": "^1.0.1",
+    "mongo-oplog": "^2.0.2",
+    "mongodb": "^2.2.26",
+    "ws": "^2.3.1"
+  }
+}
