@@ -8,8 +8,8 @@
 		const websocketServer = require('../extensions/websocket/server')(8081);
 		const oplog		 				= require('../extensions/mongodbOplog')('mongodb://localhost:27017/local', websocketServer);
 		const store 	 				= await require('../extensions/mongodb')('mongodb://localhost:27017/watertables');
-		server.listen(8080, function() {
-			console.log('Listening on 8080');
+		server.listen(8082, function() {
+			console.log('Listening on 8082');
 		});
 
 		road
