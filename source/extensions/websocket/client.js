@@ -1,7 +1,8 @@
 module.exports = url => {
 	return update => {
 		// Create WebSocket connection.
-		const server = new WebSocket('ws://watertables.lan/websockets/');
+		// const server = new WebSocket('ws://watertables.lan/websockets/');
+		const server = new WebSocket('ws://proto.royniels.nl/websockets/');
 
 		// Listen for messages
 		server.addEventListener('message', event => {
