@@ -18,7 +18,6 @@
 			.extension('store', store)
 			.middleware({
 				response : require('../middleware/response'),
-				body 		 : require('../middleware/body'),
 			});
 
 		require('./road')(road);

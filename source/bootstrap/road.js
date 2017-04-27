@@ -1,9 +1,12 @@
+const parser = require('lr-url-parser')();
+
 module.exports = road => {
 	road
+		.parser(parser)
 		.middleware({
 			template 				 : require('../middleware/template/default'),
 			'store.fixture'	 : require('../middleware/store/fixture')(),
-			'store.single'	 : require('../middleware/store/fixture')(1, true),
+			'store.single'	 : require('../middleware/store/fixture')(true),
 			'store.empty'		 : require('../middleware/store/empty'),
 			'store.list'		 : require('../middleware/store/list'),
 			'component.home' : require('../middleware/components/home'),
@@ -13,8 +16,8 @@ module.exports = road => {
 			.run('*', 'template')
 			.run('/empty', 'store.empty')
 			.run('/empty', 'component.done')
-			.run('/single', 'body', 'POST')
-			.run('/single', 'store.single', 'POST')
+			.run('/measurement/:id/:level', 'store.single')
+			.run('/measurement/:id/:level', 'component.done')
 			.run('/fixture', 'store.fixture')
 			.run('/fixture', 'component.done')
 			.run('/', 'store.list')
@@ -24,7 +27,6 @@ module.exports = road => {
 			.run('/', 'events.home', 'homeLoaded')
 			.run('data', 'events.home', 'websocket')
 		.where('webserver')
-			.done('response')
-			.done('response', 'POST');
+			.done('response');
 
 }		

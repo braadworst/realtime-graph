@@ -7,6 +7,7 @@ module.exports = url => {
 		// Listen for messages
 		server.addEventListener('message', event => {
 			const data = JSON.parse(event.data);
+			console.log(data);
 			update({ matchValue : data.matchValue, updateType : data.updateType}, data.body);
 		});	
 	}

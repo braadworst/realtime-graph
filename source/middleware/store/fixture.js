@@ -1,12 +1,12 @@
 const setMinutes = require('date-fns/set_minutes');
 
-module.exports = (amount = 30, post = false) => {
+module.exports = (single = false) => {
 	return (next, relay) => {
 		const collection = relay.extensions.store.collection('watertable');
 		let records;
 
-		if (post) {
-			records = [Object.assign({}, relay.body, { timestamp : new Date() })];
+		if (single) {
+			records = [Object.assign({}, relay.parameters, { timestamp : new Date() })];
 		} else {
 			records		 = Array(amount).fill().map((element, index) => {
 				return { 

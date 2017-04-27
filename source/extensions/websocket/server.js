@@ -13,6 +13,7 @@ module.exports = port => {
 			if (!body) {
 				throw new Error('Trying to broadcast, but no body')
 			}
+			console.log(matchValue, body, updateType);
 		  server.clients.forEach(client => {
 		  	const data = { matchValue, updateType, body };
 		    if (client.readyState === WebSocket.OPEN && client !== server) {
